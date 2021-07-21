@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -50,7 +51,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun receiveWeatherInfo(urlFull:String){
+        val backgroundReceiver = WeatherInfoBackgroundReceiver()
+        val executeService = Executors.newSingleThreadExecutor()
+        executeService.submit(backgroundReceiver)
+    }
 
+    private inner class WeatherInfoBackgroundReceiver():Runnable{
+        override fun run(){
+
+        }
     }
 
     private inner class ListItemClickListener: AdapterView.OnItemClickListener{
