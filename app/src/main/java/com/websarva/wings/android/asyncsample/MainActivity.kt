@@ -63,9 +63,9 @@ class MainActivity : AppCompatActivity() {
         return list
     }
     @UiThread
-    private fun receiveWeatherInfo(urlFull:String){
+    private fun receiveWeatherInfo(urlFull: String) {
         val handler = HandlerCompat.createAsync(mainLooper)
-        val backgroundReceiver = WeatherInfoBackgroundReceiver(handler,urlFull)
+        val backgroundReceiver = WeatherInfoBackgroundReceiver(handler, urlFull)
         val executeService = Executors.newSingleThreadExecutor()
         executeService.submit(backgroundReceiver)
     }
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
                 try{
                     it.connectTimeout =1000
                     it.readTimeout = 1000
-                    it.requestMethod = "Get"
+                    it.requestMethod = "GET"
                     it.connect()
                     val stream = it.inputStream
                     result = is2String(stream)
